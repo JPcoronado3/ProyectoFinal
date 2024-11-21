@@ -1,0 +1,72 @@
+package PatronSingleton;
+
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * @author Juan Coronado
+ */
+
+public class Gestor {
+
+    private static Gestor instancia;
+
+    private Map<String, Map<Integer, Double>> notas; // Almacena notas por estudiante y cortes
+
+    private Gestor() {
+        notas = new HashMap<>();
+    }
+
+    // Singleton: Devuelve la única instancia
+    public static Gestor obtenerInstancia() {
+        if (instancia == null) {
+            instancia = new Gestor();
+        }
+        return instancia;
+    }
+
+    // Registrar notas para un estudiante en un corte
+    public void registrarNota(String estudiante, int corte, double nota) {
+        if (corte < 1 || corte > 3) {
+            System.out.println("Error: El corte debe estar entre 1 y 3.");
+            return;
+        }
+
+        notas.putIfAbsent(estudiante, new HashMap<>());
+        notas.get(estudiante).put(corte, nota);
+
+        System.out.println("\nNota registrada:");
+        System.out.println("Estudiante: " + estudiante);
+        System.out.println("Corte: " + corte);
+        System.out.println("Nota: " + nota);
+    }
+
+    // Consultar las notas de un estudiante
+    public void consultarNotas(String estudiante) {
+        if (!notas.containsKey(estudiante)) {
+            System.out.println("No se encontraron notas para el estudiante: " + estudiante);
+            return;
+        }
+
+        Map<Integer, Double> notasEstudiante = notas.get(estudiante);
+        System.out.println("\nNotas del estudiante " + estudiante + ":");
+        for (int corte : notasEstudiante.keySet()) {
+            System.out.println("Corte " + corte + ": " + notasEstudiante.get(corte));
+        }
+    }
+
+    // Calcular el promedio ponderado (30%, 30%, 40%)
+    public void calcularPromedio(String estudiante) {
+        if (!notas.containsKey(estudiante)) {
+            System.out.println("No se encontraron notas para el estudiante: " + estudiante);
+            return;
+        }
+
+        Map<Integer, Double> notasEstudiante = notas.get(estudiante);
+        double promedio = notasEstudiante.getOrDefault(1, 0.0) * 0.3
+                        + notasEstudiante.getOrDefault(2, 0.0) * 0.3
+                        + notasEstudiante.getOrDefault(3, 0.0) * 0.4;
+
+        System.out.println("\nPromedio ponderado del estudiante " + estudiante + ": " + promedio);
+    }
+}
