@@ -1,0 +1,59 @@
+package PatronProxy;
+
+/**
+ * Clase proxy para gestionar el acceso a las notas de un estudiante
+ * @author Juan Coronado
+ */
+public class ProxyNotas {
+
+    private Calificaciones notas;
+    private String usuarioAutenticado;
+
+    public ProxyNotas(Calificaciones notas) {
+        this.notas = notas;
+    }
+
+    // Autenticar al usuario
+    public void autenticarUsuario(String usuario) {
+        if ("usuarioValido".equals(usuario)) {
+            this.usuarioAutenticado = usuario;
+            System.out.println("Usuario autenticado correctamente.");
+        } else {
+            System.out.println("Autenticación fallida.");
+        }
+    }
+
+    // Registrar una nota para un corte específico
+    public void registrarNota(int corte, double nota) {
+        if (usuarioAutenticado == null) {
+            System.out.println("Acceso denegado. Debe autenticarse primero.");
+            return;
+        }
+
+        System.out.println("Registrando nota de forma remota...");
+        notas.registrarNota(corte, nota);
+    }
+
+    // Consultar las notas del estudiante
+    public void consultarNotas() {
+        if (usuarioAutenticado == null) {
+            System.out.println("Acceso denegado. Debe autenticarse primero.");
+            return;
+        }
+
+        System.out.println("Consultando notas de forma remota...");
+        notas.mostrarNotas();
+    }
+
+    // Calcular el promedio del estudiante
+    public void calcularPromedio() {
+        if (usuarioAutenticado == null) {
+            System.out.println("Acceso denegado. Debe autenticarse primero.");
+            return;
+        }
+
+        System.out.println("Calculando promedio de forma remota...");
+        double promedio = notas.calcularPromedio();
+        System.out.println("Promedio ponderado: " + promedio);
+    }
+}
