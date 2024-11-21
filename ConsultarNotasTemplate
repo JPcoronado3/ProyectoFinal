@@ -1,0 +1,33 @@
+package PatronPlantillaDeMetodo;
+
+/**
+ *
+ * @author user
+ */
+public abstract class ConsultarNotasTemplate {
+
+    // Template Method
+    public final void consultarNotas() {
+        obtenerDatosEstudiante();
+        verificarPagosPendientes();
+        calcularNotas();
+        mostrarNotas();
+    }
+
+    // Pasos generales del proceso
+    protected abstract void obtenerDatosEstudiante();
+
+    protected abstract void calcularNotas();
+
+    // Paso común que puede ser compartido por todos
+    private void verificarPagosPendientes() {
+        System.out.println("Verificando si el estudiante tiene pagos pendientes...");
+        // Lógica para verificar pagos
+    }
+
+    // Paso común final
+    private void mostrarNotas() {
+        System.out.println("Mostrando las notas calculadas...");
+        // Lógica para mostrar las notas
+    }
+}
