@@ -1,0 +1,27 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package Patrones;
+
+/**
+ *
+ * @author user
+ */
+
+public class PlantillaBitacoraCambioNota extends ObservadorNotificador {
+    @Override
+    protected String generarEncabezado() {
+        return "[Bitácora] --- Registro de Actividad ---";
+    }
+
+    @Override
+    protected String generarCuerpo(String mensaje) {
+        return "Registro: " + mensaje;
+    }
+
+    @Override
+    protected String generarPie() {
+        return "[Bitácora] Registro finalizado.";
+    }
+}
