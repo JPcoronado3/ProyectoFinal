@@ -1,0 +1,32 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package Patrones;
+
+import Sistema.*;
+
+/**
+ *
+ * @author user
+ */
+
+public class SingletonGestorEstudiantes {
+    private static SingletonGestorEstudiantes instancia; // Única instancia del singleton
+
+    // Constructor privado para evitar creación externa
+    private SingletonGestorEstudiantes() {}
+
+    // Método para obtener la instancia única
+    public static SingletonGestorEstudiantes getInstancia() {
+        if (instancia == null) {
+            instancia = new SingletonGestorEstudiantes();
+        }
+        return instancia;
+    }
+
+    // Método para crear un nuevo estudiante
+    public Estudiante crearEstudiante(String nombre, String id) {
+        return new Estudiante(nombre, id);
+    }
+}
