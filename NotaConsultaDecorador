@@ -1,0 +1,18 @@
+package PatronDecorador;
+
+/**
+ *
+ * @author user
+ */
+public abstract class NotaConsultaDecorator implements NotaConsulta {
+    protected NotaConsulta notaConsulta;
+
+    public NotaConsultaDecorator(NotaConsulta notaConsulta) {
+        this.notaConsulta = notaConsulta;
+    }
+
+    @Override
+    public String consultarNotas() {
+        return notaConsulta.consultarNotas();
+    }
+}
