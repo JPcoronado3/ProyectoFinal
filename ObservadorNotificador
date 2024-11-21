@@ -1,0 +1,33 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package Patrones;
+
+/**
+ *
+ * @author user
+ */
+
+// Clase Notificador (Observador concreto)
+public abstract class ObservadorNotificador implements Observador {
+    @Override
+    public void actualizar(String mensaje) {
+        String encabezado = generarEncabezado();
+        String cuerpo = generarCuerpo(mensaje);
+        String pie = generarPie();
+        notificar(encabezado, cuerpo, pie);
+    }
+
+    // Método plantilla que define el flujo de notificación
+    private void notificar(String encabezado, String cuerpo, String pie) {
+        System.out.println(encabezado);
+        System.out.println(cuerpo);
+        System.out.println(pie);
+    }
+
+    // Métodos abstractos para que las subclases definan su comportamiento específico
+    protected abstract String generarEncabezado();
+    protected abstract String generarCuerpo(String mensaje);
+    protected abstract String generarPie();
+}
