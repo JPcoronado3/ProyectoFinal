@@ -1,0 +1,32 @@
+package PatronDecorador;
+
+import java.util.*;
+
+/**
+ *
+ * @author user
+ */
+public class NotaConsultaBase implements NotaConsulta {
+
+    private String estudiante;
+    Map<String, Double[]> notas; // Materia -> [NotaCorte1, NotaCorte2, NotaCorte3]
+
+    public NotaConsultaBase(String estudiante, Map<String, Double[]> notas) {
+        this.estudiante = estudiante;
+        this.notas = notas;
+    }
+
+    @Override
+    public String consultarNotas() {
+        StringBuilder resultado = new StringBuilder("Notas del estudiante " + estudiante + ":\n");
+        for (Map.Entry<String, Double[]> entry : notas.entrySet()) {
+            Double[] cortes = entry.getValue();
+            resultado.append(entry.getKey())
+                    .append(" - Corte 1: ").append(cortes[0])
+                    .append(", Corte 2: ").append(cortes[1])
+                    .append(", Corte 3: ").append(cortes[2])
+                    .append("\n");
+        }
+        return resultado.toString();
+    }
+}
