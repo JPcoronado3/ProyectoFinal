@@ -1,0 +1,18 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
+ */
+package Patrones;
+
+/**
+ *
+ * @author user
+ */
+
+// Clase Bitacora (Observador concreto)
+public class Bitacora implements Observador {
+    @Override
+    public void actualizar(String mensaje) {
+        System.out.println("[Bitacora] Registro del cambio: " + mensaje);
+    }
+}
