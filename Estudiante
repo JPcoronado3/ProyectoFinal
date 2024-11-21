@@ -1,0 +1,75 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package Sistema;
+
+import Patrones.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ *
+ * @author user
+ */
+public class Estudiante {
+    private String nombre;
+    private String id;
+    private double notaCorte1;
+    private double notaCorte2;
+    private double notaCorte3;
+    private List<Observador> observadores = new ArrayList<>(); // Lista de observadores
+
+    public Estudiante(String nombre, String id) {
+        this.nombre = nombre;
+        this.id = id;
+    }
+
+    // Métodos para registrar y eliminar observadores
+    public void agregarObservador(Observador observador) {
+        observadores.add(observador);
+    }
+
+    public void eliminarObservador(Observador observador) {
+        observadores.remove(observador);
+    }
+
+    // Método para notificar a todos los observadores
+    private void notificarObservadores(String mensaje) {
+        for (Observador observador : observadores) {
+            observador.actualizar(mensaje);
+        }
+    }
+
+    // Métodos setters para ingresar las notas (con notificación)
+    public void setNotaCorte1(double nota) {
+        this.notaCorte1 = nota;
+        notificarObservadores("Nota del Corte 1 actualizada a: " + nota);
+    }
+
+    public void setNotaCorte2(double nota) {
+        this.notaCorte2 = nota;
+        notificarObservadores("Nota del Corte 2 actualizada a: " + nota);
+    }
+
+    public void setNotaCorte3(double nota) {
+        this.notaCorte3 = nota;
+        notificarObservadores("Nota del Corte 3 actualizada a: " + nota);
+    }
+
+    // Método para calcular el promedio ponderado
+    public double calcularPromedio() {
+        return (notaCorte1 * 0.30) + (notaCorte2 * 0.30) + (notaCorte3 * 0.40);
+    }
+
+    // Método para mostrar información del estudiante
+    public void mostrarInformacion() {
+        System.out.println("Nombre: " + nombre);
+        System.out.println("ID: " + id);
+        System.out.println("Nota Corte 1: " + notaCorte1);
+        System.out.println("Nota Corte 2: " + notaCorte2);
+        System.out.println("Nota Corte 3: " + notaCorte3);
+        System.out.println("Promedio Ponderado: " + calcularPromedio());
+    }
+}
