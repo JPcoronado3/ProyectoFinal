@@ -1,0 +1,49 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
+package Sistema;
+
+import java.util.Scanner;
+import Patrones.*;
+
+/**
+ *
+ * @author user
+ */
+public class SistemaNotas {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Obtener la instancia del SingletonGestorEstudiantes
+        SingletonGestorEstudiantes gestor = SingletonGestorEstudiantes.getInstancia();
+
+        // Crear un nuevo estudiante
+        System.out.print("Ingrese el nombre del estudiante: ");
+        String nombre = scanner.nextLine();
+        System.out.print("Ingrese el ID del estudiante: ");
+        String id = scanner.nextLine();
+
+        Estudiante estudiante = gestor.crearEstudiante(nombre, id);
+
+        // Crear observadores y registrarlos en el estudiante
+        Observador notificador = new PlantillaNotificadorCambioNota();
+        Observador bitacora = new PlantillaBitacoraCambioNota();
+        estudiante.agregarObservador(notificador);
+        estudiante.agregarObservador(bitacora);
+
+        // Ingresar las notas
+        System.out.print("Ingrese la nota del primer corte (0-5): ");
+        estudiante.setNotaCorte1(scanner.nextDouble());
+        System.out.print("Ingrese la nota del segundo corte (0-5): ");
+        estudiante.setNotaCorte2(scanner.nextDouble());
+        System.out.print("Ingrese la nota del tercer corte (0-5): ");
+        estudiante.setNotaCorte3(scanner.nextDouble());
+
+        // Mostrar información del estudiante
+        System.out.println("\n--- Información del Estudiante ---");
+        estudiante.mostrarInformacion();
+
+        scanner.close();
+    }
+}
