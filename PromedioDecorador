@@ -1,0 +1,29 @@
+package PatronDecorador;
+
+/**
+ *
+ * @author user
+ */
+public class PromedioDecorador extends NotaConsultaDecorator {
+
+    public PromedioDecorador(NotaConsulta notaConsulta) {
+        super(notaConsulta);
+    }
+
+    @Override
+    public String consultarNotas() {
+        String resultado = super.consultarNotas();
+        resultado += calcularPromedios();
+        return resultado;
+    }
+
+    private String calcularPromedios() {
+        StringBuilder resultado = new StringBuilder("\nPromedios:\n");
+        NotaConsultaBase base = (NotaConsultaBase) notaConsulta;
+        base.notas.forEach((materia, cortes) -> {
+            double promedio = (cortes[0] * 0.3) + (cortes[1] * 0.3) + (cortes[2] * 0.4);
+            resultado.append(materia).append(": ").append(promedio).append("\n");
+        });
+        return resultado.toString();
+    }
+}
