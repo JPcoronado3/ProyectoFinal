@@ -1,0 +1,20 @@
+package PatronPlantillaDeMetodo;
+
+/**
+ *
+ * @author user
+ */
+public class ProgramaIngenieria extends ConsultarNotasTemplate {
+
+    @Override
+    protected void obtenerDatosEstudiante() {
+        System.out.println("Obteniendo datos del estudiante del programa de Ingeniería...");
+        // Lógica para obtener datos de estudiantes en Ingeniería
+    }
+
+    @Override
+    protected void calcularNotas() {
+        System.out.println("Calculando notas para el programa de Ingeniería...");
+        // Lógica específica para calcular notas (e.g., 30%, 30%, 40%)
+    }
+}
